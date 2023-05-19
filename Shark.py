@@ -13,7 +13,7 @@ def stop_capture(signum, frame):
     global stop_capturing
     stop_capturing = True
 
-signal.signal(signal.SIGINT, stop_capture)  # Setează semnalul SIGINT pentru a opri capturarea (Ctrl+C)
+signal.signal(signal.SIGINT, stop_capture)  # Setează semnalul SIGINT pentru a opri capturarea
 
 try:
     for packet in capture.sniff_continuously():
@@ -26,9 +26,5 @@ except KeyboardInterrupt:
     pass
 
 with open('Pachete.txt', 'r') as f:
-    while True:
-        line = f.readline()
-        if line:
-            print(line.strip())  # Afișează informațiile din fișier în timp real
-        else:
-            break
+    for line in f:
+        print(line.strip())  # Afișează informațiile din fișier în timp real
